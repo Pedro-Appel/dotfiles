@@ -10,20 +10,58 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod4
 
+# Custom configurations
+# --------------------------------------------------------------------------
+# Whenever need to see list of keysym and keycodes use `xmodmap -pke`
+
+# Gap Configuration
+gaps inner 10px
+gaps horizontal 0px
+gaps vertical 0px
+#smart_gaps inverse_outer
+
+# Focus where mouse is
+focus_follows_mouse no
+mouse_warping none
+
+# Color bindings 
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+
+# Starts picom
 exec --no-startup-id picom
+
+# Sets double screen if exists
 exec xrandr --output HDMI-1-0 --auto --right-of eDP
+
+# Configs Polybar
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
+
+# Add 
 exec_always feh --bg-scale ~/.config/images/cafe-anime.png
 
-#Font for window titles. Will also be used by the bar unless a different font
+# Lock screen
+bindsym Control+$mod+l exec "i3lock -c 000000"
 
+for_window [all] title_window_icon padding 2px
+
+bindsym $mod+x layout toggle all
+
+# --------------------------------------------------------------------------
+
+# Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:JetBrainsMono NFP SemiBold Italic 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans Mono 8
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -57,19 +95,18 @@ tiling_drag modifier titlebar
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# Lock screen
-bindsym Control+$mod+l exec "i3lock -c 000000"
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
-bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -113,7 +150,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
