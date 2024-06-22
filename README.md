@@ -10,7 +10,7 @@ sudo apt install stow -y
 ```
 - Nvim
 ```
-sudo apt-get install neovim -y
+sudo snap install neovim -y
 ```
 - i3
 ```
