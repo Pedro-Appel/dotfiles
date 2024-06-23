@@ -44,7 +44,7 @@ exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
 # Add 
-exec_always feh --bg-scale ~/.config/images/cafe-anime.png
+exec_always feh --bg-scale ~/.config/images/cafe-neon.png
 
 # Lock screen
 bindsym Control+$mod+l exec "i3lock -c 000000"

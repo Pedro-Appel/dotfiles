@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale '/home/rat/.config/images/cafe-anime.png' 
+feh --no-fehbg --bg-scale '/home/rat/Documents/dotfiles/backgrounds/images/cafe-neon.jpg' 
