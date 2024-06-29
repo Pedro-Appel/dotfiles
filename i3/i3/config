@@ -32,6 +32,7 @@ client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
+bindcode 107 exec --no-startup-id flameshot gui
 
 # Starts picom
 exec --no-startup-id picom
