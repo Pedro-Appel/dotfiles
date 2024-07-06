@@ -24,29 +24,55 @@ gaps vertical 0px
 focus_follows_mouse no
 mouse_warping none
 
-# Color bindings 
-# class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+######################################
+# color settings for bar and windows #
+######################################
 
+# Define colors variables:
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+# define colors for windows:
+#class		          	  border		  bground		  text		indicator	child_border
+client.focused		      $lightblue	$darkblue	  $white	$purple		$mediumgrey
+client.unfocused	      $darkblue	  $darkblue	  $grey		$purple		$darkgrey
+client.focused_inactive	$darkblue	  $darkblue	  $grey		$purple		$black
+client.urgent		        $urgentred	$urgentred	$white	$purple		$yellowbrown
+
+set $smart_borders off
+
+# default window borders
+default_border none
+default_floating_border 1pixel
+
+# Configs a screenshot tool
 bindcode 107 exec --no-startup-id flameshot gui
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 
 # Starts picom
 exec --no-startup-id picom
 
-# Sets double screen if exists
-exec xrandr --output HDMI-1-0 --auto --right-of eDP
+# Ajusts monitors and workspaces
+exec --no-startup-id xrandr --output HDMI-1-0 --auto --right-of eDP
+workspace 1 output HDMI-1-0
+workspace 2 output eDP
+
 
 # Configs Polybar
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
 # Add 
-exec_always feh --bg-scale ~/.config/images/cafe-neon.png
+exec_always feh feh --bg-scale --borderless --randomize --verbose .config/images
 
 # Lock screen
 bindsym Control+$mod+l exec "i3lock -c 000000"
