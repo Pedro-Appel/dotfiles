@@ -49,11 +49,15 @@ sudo apt install rofi -y
 - stow bash ~/
 - stow rofi ~/.config
 
+# Dependencies
+```
+sudo apt-get install i3lock-blur
+```
 
 # Still Missing
 
-- [ ] Customize Polybar
-- [ ] Customize Rofi
+- [x] Customize Polybar
+- [x] Customize Rofi
 
 
 

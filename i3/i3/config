@@ -75,7 +75,8 @@ exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 exec_always feh --no-fehbg --bg-scale --borderless --randomize --verbose .config/images
 
 # Lock screen
-bindsym Control+$mod+l exec "i3lock -c 000000"
+bindsym Control+$mod+l exec bash ~/.config/i3/i3blur-lock.sh
+#bindsym Control+$mod+l exec "i3lock --fuzzy -c 000000"
 
 # Custom window icon
 for_window [all] title_window_icon padding 2px
