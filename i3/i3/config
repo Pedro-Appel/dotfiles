@@ -63,7 +63,7 @@ bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 exec --no-startup-id picom
 
 # Ajusts monitors and workspaces
-exec_always --no-startup-id xrandr --output HDMI-1-0 --off
+exec --no-startup-id xrandr --output HDMI-1-0 --off
 exec_always --no-startup-id xrandr --output HDMI-1-0 --primary --mode 1920x1080 --right-of eDP
 workspace 1 output HDMI-1-0
 workspace 2 output eDP
