@@ -8,5 +8,5 @@ alias l='ls -CF --color=auto'
 alias perm='getfacl'
 alias setmon='xrandr --output HDMI-1-0 --primary --auto --right-of eDP'
 alias ulogout='gnome-session-quit --no-prompt'
-
+alias i3blur='~/.config/i3/i3blur-lock.sh'
 
