@@ -63,8 +63,9 @@ bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 exec --no-startup-id picom
 
 # Ajusts monitors and workspaces
-exec --no-startup-id xrandr --output HDMI-1-0 --off
-exec_always --no-startup-id xrandr --output HDMI-1-0 --primary --mode 1920x1080 --right-of eDP
+#exec --no-startup-id xrandr --output HDMI-1-0 --off
+# Reload monitor
+exec_always --no-startup-id sleep 2 && xrandr --output HDMI-1-0 --primary --mode 1920x1080 --right-of eDP
 workspace 1 output HDMI-1-0
 workspace 2 output eDP
 
@@ -74,7 +75,7 @@ exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
 # Add 
-exec_always feh --no-fehbg --bg-scale --borderless --randomize --verbose .config/images
+exec_always sleep 2 && feh --no-fehbg --bg-scale --borderless --randomize --verbose .config/images
 
 # Lock screen
 bindsym Control+$mod+l exec bash ~/.config/i3/i3blur-lock.sh
@@ -108,7 +109,8 @@ exec --no-startup-id dex --autostart --environment i2
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- 'bash ~/.config/i3/i3blur-lock.sh'
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
