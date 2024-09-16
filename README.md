@@ -44,10 +44,10 @@ sudo apt install rofi -y
 - stow i3 -t ~/.config
 - stow starship -t ~/.config
 - stow feh -t ~/
-- stow polybar ~/.config
-- stow picom ~/.config
-- stow bash ~/
-- stow rofi ~/.config
+- stow polybar -t ~/.config
+- stow picom -t ~/.config
+- stow bash -t ~/
+- stow rofi -t ~/.config
 
 # Dependencies
 ```

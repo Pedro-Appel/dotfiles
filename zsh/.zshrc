@@ -3,7 +3,6 @@
 HISTSIZE=1000
 SAVEHIST=2000
 HISTFILE=~/.zsh_history
-
 # Use modern completion system
 zstyle :compinstall filename '/home/rat/.zshrc'
 autoload -Uz compinit
