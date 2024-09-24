@@ -1,0 +1,97 @@
+---
+- hosts: localhost
+  become: true  # This will run the tasks as root when necessary
+  vars:
+    # Define the list of APT packages you want to install
+    apt_packages:
+      - git
+      - vim
+      - zsh
+      - curl
+      - build-essential
+      - stow
+      - neovim
+      - i3
+      - picom
+      - picom
+      - rofi
+      - unzip
+
+    # Define the Git repository and destination for your dotfiles
+    dotfiles_repo: "https://github.com/Pedro-Appel/dotfiles.git"
+    dotfiles_dest: "/home/{{ ansible_env.USER }}/dotfiles"
+
+    # Directories inside your dotfiles repository to be managed by stow
+    stow_directories:
+      - bash
+      - background
+      - i3
+      - nvim
+      - picom
+      - polybar
+      - rofi
+      - starship
+      - zsh
+
+  tasks:
+
+    # Update apt cache and upgrade system packages
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Upgrade system packages
+      apt:
+        upgrade: dist
+
+    # Install required packages via apt
+    - name: Install APT packages
+      apt:
+        name: "{{ apt_packages }}"
+        state: present
+
+    # Clone the dotfiles repository from GitHub
+    - name: Clone dotfiles repository
+      git:
+        repo: "{{ dotfiles_repo }}"
+        dest: "{{ dotfiles_dest }}"
+        version: main
+        update: yes
+
+    # Use GNU Stow to symlink dotfiles
+    - name: Create symlinks for dotfiles using Stow
+      command: stow --dir={{ dotfiles_dest }} --target=/home/{{ ansible_env.USER }} {{ item }}
+      loop: "{{ stow_directories }}"
+
+    # Optionally, you can restart your shell or apply configurations
+    - name: Change default shell to zsh (optional)
+      shell: chsh -s $(which zsh) "{{ ansible_env.USER }}"
+      ignore_errors: yes
+    
+    - name: Create directory for JetBrains Mono fonts
+      file:
+        path: /usr/share/fonts/truetype/jetbrainsmono
+        state: directory
+        mode: '0755'  # Set permissions if needed
+        
+    # Install JetBrains Mono font manually if it's not available as a package
+    - name: Download JetBrains Mono font archive
+      get_url:
+        url: "https://github.com/JetBrains/JetBrainsMono/releases/download/v2.242/JetBrainsMono-2.242.zip"
+        dest: "/tmp/JetBrainsMono.zip"
+
+    - name: Unzip JetBrains Mono font
+      unarchive:
+        src: "/tmp/JetBrainsMono.zip"
+        dest: "/usr/share/fonts/truetype/jetbrainsmono"
+        remote_src: yes
+
+    - name: Refresh font cache
+      command: fc-cache -fv
+
+    # Install Starship
+    - name: Install Starship
+      shell: "curl -sSf https://starship.rs/install.sh | sh -s -- --yes"
+      args:
+        executable: /bin/bash
