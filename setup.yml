@@ -13,7 +13,6 @@
       - neovim
       - i3
       - picom
-      - picom
       - rofi
       - unzip
 
@@ -23,7 +22,6 @@
 
     # Directories inside your dotfiles repository to be managed by stow
     stow_directories:
-      - bash
       - backgrounds
       - i3
       - nvim
