@@ -19,7 +19,7 @@
 
     # Define the Git repository and destination for your dotfiles
     dotfiles_repo: "https://github.com/Pedro-Appel/dotfiles.git"
-    dotfiles_dest: "/home/{{ ansible_env.USER }}/dotfiles"
+    dotfiles_dest: "/home/$USER/dotfiles"
 
     # Directories inside your dotfiles repository to be managed by stow
     stow_directories:
@@ -61,12 +61,12 @@
 
     # Use GNU Stow to symlink dotfiles
     - name: Create symlinks for dotfiles using Stow
-      command: stow --dir={{ dotfiles_dest }} --target=/home/{{ ansible_env.USER }} {{ item }}
+      command: stow --dir={{ dotfiles_dest }} --target=/home/$USER {{ item }}
       loop: "{{ stow_directories }}"
 
     # Optionally, you can restart your shell or apply configurations
     - name: Change default shell to zsh (optional)
-      shell: chsh -s $(which zsh) "{{ ansible_env.USER }}"
+      shell: chsh -s $(which zsh) "$USER"
       ignore_errors: yes
     
     - name: Create directory for JetBrains Mono fonts
