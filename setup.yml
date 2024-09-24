@@ -24,7 +24,7 @@
     # Directories inside your dotfiles repository to be managed by stow
     stow_directories:
       - bash
-      - background
+      - backgrounds
       - i3
       - nvim
       - picom
