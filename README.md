@@ -1,58 +1,14 @@
 # List of programs
 
-- Zsh
-```
-sudo apt-get install zsh -y
-```
-- Stow
-```
-sudo apt install stow -y
-```
-- Nvim
-```
-sudo snap install neovim -y
-```
-- i3
-```
-sudo apt install i3 -y
-```
-- Starship
-```
-1. curl -sS https://starship.rs/install.sh | sh
-2. add eval "$(starship init zsh)" in ~/.zshrc file
-```
-- Feh
-```
-sudo apt install feh -y
-```
-- Polybar
-```
-sudo apt install polybar -y
-```
-- Picom
-```
-sudo apt install picom -y
-```
-- Rofi
-```
-sudo apt install rofi -y
-```
-# Where to stow each config:
+To use this dotfiles setup you can just follow this simple steps
 
-- stow zsh -t ~/
-- stow nvim -t ~/.config
-- stow i3 -t ~/.config
-- stow starship -t ~/.config
-- stow feh -t ~/
-- stow polybar -t ~/.config
-- stow picom -t ~/.config
-- stow bash -t ~/
-- stow rofi -t ~/.config
-
-# Dependencies
-```
-sudo apt-get install i3lock-blur
-```
+1. clone https://github.com/Pedro-Appel/dotfiles.git
+2. edit the setup_machine.sh before the last echo
+    ```
+    ansible-playbook playbook.yml --extra-vars "user=ubuntu" # Modify to your machine user 
+    ```
+3. chmod +x setup_machine.sh
+4. ./setup_machine.sh
 
 # Still Missing
 
