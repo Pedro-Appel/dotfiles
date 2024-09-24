@@ -1,4 +1,4 @@
-# List of programs
+# How to use it
 
 To use this dotfiles setup you can just follow this simple steps
 
