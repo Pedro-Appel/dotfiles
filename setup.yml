@@ -19,7 +19,7 @@
 
     # Define the Git repository and destination for your dotfiles
     dotfiles_repo: "https://github.com/Pedro-Appel/dotfiles.git"
-    dotfiles_dest: "/home/$USER/dotfiles"
+    dotfiles_dest: "/home/ubuntu/dotfiles"
 
     # Directories inside your dotfiles repository to be managed by stow
     stow_directories:
@@ -61,12 +61,12 @@
 
     # Use GNU Stow to symlink dotfiles
     - name: Create symlinks for dotfiles using Stow
-      command: stow --dir={{ dotfiles_dest }} --target=/home/$USER {{ item }}
+      command: stow --dir={{ dotfiles_dest }} --target=/home/ubuntu {{ item }}
       loop: "{{ stow_directories }}"
 
     # Optionally, you can restart your shell or apply configurations
     - name: Change default shell to zsh (optional)
-      shell: chsh -s $(which zsh) "$USER"
+      shell: chsh -s $(which zsh) "ubuntu"
       ignore_errors: yes
     
     - name: Create directory for JetBrains Mono fonts
