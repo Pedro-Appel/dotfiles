@@ -15,10 +15,11 @@
       - picom
       - rofi
       - unzip
+      - openjdk-21-jdk
 
     # Define the Git repository and destination for your dotfiles
     dotfiles_repo: "https://github.com/Pedro-Appel/dotfiles.git"
-    dotfiles_dest: "/home/{{ user }}/dotfiles"
+    dotfiles_dest: "/home/{{ user }}/software/dotfiles"
 
     # Directories inside your dotfiles repository to be managed by stow
     stow_directories:
@@ -48,14 +49,6 @@
       apt:
         name: "{{ apt_packages }}"
         state: present
-
-    # Clone the dotfiles repository from GitHub
-    - name: Clone dotfiles repository
-      git:
-        repo: "{{ dotfiles_repo }}"
-        dest: "{{ dotfiles_dest }}"
-        version: main
-        update: yes
 
     # Use GNU Stow to symlink dotfiles
     - name: Create symlinks for dotfiles using Stow
@@ -92,4 +85,20 @@
     - name: Install Starship
       shell: "curl -sSf https://starship.rs/install.sh | sh -s -- --yes"
       args:
+        executable: /bin/bash
+
+    #Install Brave
+    - name: Curl brave gpg key
+      shell: "curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg"
+      args: 
+        executable: /bin/bash
+
+    - name: Add configs to install brave
+      shell: "echo 'deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main' |sudo tee /etc/apt/sources.list.d/brave-browser-release.list"
+      args: 
+        executable: /bin/bash
+
+    - name: Install brave 
+      shell: "sudo apt update && sudo apt install brave-browser -y"
+      args: 
         executable: /bin/bash

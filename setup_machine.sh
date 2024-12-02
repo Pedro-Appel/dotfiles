@@ -20,6 +20,6 @@ ansible --version
 
 # Run the Ansible playbook (ensure it exists in the same directory or modify the path)
 echo "Running the Ansible playbook..."
-ansible-playbook playbook.yml --extra-vars "user=ubuntu" # Modify to your machine user 
+ansible-playbook playbook.yml --extra-vars "user=rat" # Modify to your machine user 
 
 echo "System setup completed!"
