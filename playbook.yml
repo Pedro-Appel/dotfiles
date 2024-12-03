@@ -12,6 +12,7 @@
       - stow
       - neovim
       - i3
+      - feh
       - picom
       - rofi
       - unzip

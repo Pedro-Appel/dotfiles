@@ -21,3 +21,5 @@ export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 export PATH=$PATH:$JAVA_HOME/bin
 export GRADLE_HOME=/opt/gradle/gradle-8.9
 export PATH=${PATH}:${GRADLE_HOME}/bin
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/git
