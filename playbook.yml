@@ -17,6 +17,8 @@
       - rofi
       - unzip
       - openjdk-21-jdk
+      - neofetch
+      - speedtest-cli
 
     # Define the Git repository and destination for your dotfiles
     dotfiles_repo: "https://github.com/Pedro-Appel/dotfiles.git"
@@ -102,4 +104,23 @@
     - name: Install brave 
       shell: "sudo apt update && sudo apt install brave-browser -y"
       args: 
+        executable: /bin/bash
+
+    #Installing IDEA-U or IDEA-C
+    - name: Install IntelliJ
+      shell: "sudo snap refresh && sudo snap install intellij-idea-ultimate --classic"
+      #shell: "sudo snap refresh && sudo snap install intellij-idea-ultimate --classic"
+      args:
+        executable: /bin/bash
+
+    #Installing Spotify
+    - name: Install Spotify
+      shell: "sudo snap install spotify"
+      args:
+        executable: /bin/bash
+
+    #Installing Docker
+    - name: Install Docker
+      shell: "./install-docker.sh"
+      args:
         executable: /bin/bash
